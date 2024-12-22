@@ -1,0 +1,10 @@
+.content img {
+    width: 60%;
+}
+
+figure {
+    width: 80%;
+    max-width: 40em;
+    margin: 1em auto;
+    padding: 0.5em 1em;
+}

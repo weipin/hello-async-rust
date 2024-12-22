@@ -1,0 +1,19 @@
+[book]
+authors = ["Weipin Xia"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Hello async Rust"
+
+[preprocessor.d2]
+command = "mdbook-d2"
+inline = false
+
+theme = "0"
+dark-theme = "200"
+
+[output.html]
+additional-css = ["diagram.css"]
+
+[output.html.playground]
+runnable = false
