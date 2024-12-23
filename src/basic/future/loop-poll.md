@@ -17,7 +17,7 @@ The examples include "loop-poll-hello-udp" and "loop-poll-many-hello-udp".
 `RecvOnce`, as a major part of the "UDP Hello" examples, is a Future which receives one response from a given service.
 Its `poll` implementation reads data from a given UDP socket. `RecvOnce` requires and assumes that the UDP socket is in nonblocking mode.
 
-Source: [lib.rs](examples/src/lib.rs)
+Source: [lib.rs](https://github.com/weipin/hello-async-rust/blob/main/examples/src/lib.rs)
 
 ```rust
 {{#include ../../../examples/src/lib.rs:RecvOnce}}
@@ -28,7 +28,7 @@ Source: [lib.rs](examples/src/lib.rs)
 "loop-poll-hello-udp" sends `b"hello"` to a given echo service, creates a `RecvOnce`, and calls `poll` of
 the `RecvOnce` until `Poll::Ready(Vec<u8>)` is returned.
 
-Source: [loop-poll-hello-udp.rs](examples/src/bin/loop-poll-hello-udp.rs)
+Source: [loop-poll-hello-udp.rs](https://github.com/weipin/hello-async-rust/blob/main/examples/src/bin/loop-poll-hello-udp.rs)
 
 ### Example: "loop-poll-many-hello-udp"
 
@@ -36,7 +36,7 @@ Source: [loop-poll-hello-udp.rs](examples/src/bin/loop-poll-hello-udp.rs)
 a vector of 1000 `RecvOnce`s, and calls `poll` of each `RecvOnce` until all
 returns `Poll::Ready(Vec<u8>)`.
 
-Source: [loop-poll-many-hello-udp.rs](examples/src/bin/loop-poll-hello-udp.rs)
+Source: [loop-poll-many-hello-udp.rs](https://github.com/weipin/hello-async-rust/blob/main/examples/src/bin/loop-poll-many-hello-udp.rs)
 
 ### The echo service: "Lazy Echo"
 
@@ -46,8 +46,8 @@ The service waits one second before any sending, hence lazy.
 "Lazy Echo" has two implementations: "lazy-echo-udp-smol" and "lazy-echo-udp-tokio" --
 same behavior but with different async runtimes.
 
-- "lazy-echo-udp-smol" source: [lazy-echo-udp-smol.rs](examples/src/bin/lazy-echo-udp-smol.rs)
-- "lazy-echo-udp-tokio" source: [lazy-echo-udp-tokio.rs](examples/src/bin/lazy-echo-udp-tokio.rs)
+- "lazy-echo-udp-smol" source: [lazy-echo-udp-smol.rs](https://github.com/weipin/hello-async-rust/blob/main/examples/src/bin/lazy-echo-udp-smol.rs)
+- "lazy-echo-udp-tokio" source: [lazy-echo-udp-tokio.rs](https://github.com/weipin/hello-async-rust/blob/main/examples/src/bin/lazy-echo-udp-tokio.rs)
 
 ### Run the examples
 
