@@ -1,14 +1,17 @@
 # Future
 
 ## What's a Future
-A Future is an object which represents a value, a value that becomes ready "some time later."
+A Future is an object which represents a value, a value that becomes ready
+"some time later."
 
 
 ## Future as function result
 Therefore, Futures can be used to represent function results when those results
-can only become ready "some time later." This usage of Future separates results from functions.
+can only become ready "some time later." This usage of Future separates results
+from functions.
 
-Diagram 1: Represented by a Future, the result `bar` is separated from its function `foo`.
+Diagram 1: Represented by a Future, the result `bar` is separated from its
+function `foo`.
 ```d2
 direction: right
 
@@ -16,8 +19,8 @@ future.bar
 "foo(...)" -> future
 ```
 
-This separation provides new ways to process ready-some-time-later
-results, making async Rust possible.
+This separation provides new ways to process ready-some-time-later results,
+making async Rust possible.
 
 Diagram 2: Obtaining `bar` through a Future.
 ```d2

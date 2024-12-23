@@ -14,8 +14,10 @@ The examples include "loop-poll-hello-udp" and "loop-poll-many-hello-udp".
 
 ### `RecvOnce`
 
-`RecvOnce`, as a major part of the "UDP Hello" examples, is a Future which receives one response from a given service.
-Its `poll` implementation reads data from a given UDP socket. `RecvOnce` requires and assumes that the UDP socket is in nonblocking mode.
+`RecvOnce`, as a major part of the "UDP Hello" examples, is a Future which
+receives one response from a given service. Its `poll` implementation reads data
+from a given UDP socket. `RecvOnce` requires and assumes that the UDP socket is
+in nonblocking mode.
 
 Source: [lib.rs](https://github.com/weipin/hello-async-rust/blob/main/examples/src/lib.rs)
 
@@ -25,23 +27,24 @@ Source: [lib.rs](https://github.com/weipin/hello-async-rust/blob/main/examples/s
 
 ### Example: "loop-poll-hello-udp"
 
-"loop-poll-hello-udp" sends `b"hello"` to a given echo service, creates a `RecvOnce`, and calls `poll` of
-the `RecvOnce` until `Poll::Ready(Vec<u8>)` is returned.
+"loop-poll-hello-udp" sends `b"hello"` to a given echo service, creates a
+`RecvOnce`, and calls `poll` of the `RecvOnce` until `Poll::Ready(Vec<u8>)` is
+returned.
 
 Source: [loop-poll-hello-udp.rs](https://github.com/weipin/hello-async-rust/blob/main/examples/src/bin/loop-poll-hello-udp.rs)
 
 ### Example: "loop-poll-many-hello-udp"
 
-"loop-poll-many-hello-udp" repeatedly sends `b"hello"` to a given echo service for 1000 times, creates
-a vector of 1000 `RecvOnce`s, and calls `poll` of each `RecvOnce` until all
-returns `Poll::Ready(Vec<u8>)`.
+"loop-poll-many-hello-udp" repeatedly sends `b"hello"` to a given echo service
+for 1000 times, creates a vector of 1000 `RecvOnce`s, and calls `poll` of each
+`RecvOnce` until all returns `Poll::Ready(Vec<u8>)`.
 
 Source: [loop-poll-many-hello-udp.rs](https://github.com/weipin/hello-async-rust/blob/main/examples/src/bin/loop-poll-many-hello-udp.rs)
 
 ### The echo service: "Lazy Echo"
 
-"Lazy Echo" is an UDP echo service: the service sends received data back to where it comes from.
-The service waits one second before any sending, hence lazy.
+"Lazy Echo" is an UDP echo service: the service sends received data back to
+where it comes from. The service waits one second before any sending, hence lazy.
 
 "Lazy Echo" has two implementations: "lazy-echo-udp-smol" and "lazy-echo-udp-tokio" --
 same behavior but with different async runtimes.
@@ -80,15 +83,16 @@ in about 1 second.
 
 ### Wastes CPU time
 
-As a future has to be polled repeatedly and aggressively in a loop, CPU time is wasted
-when data isn't ready.
+As a future has to be polled repeatedly and aggressively in a loop, CPU time is
+wasted when data isn't ready.
 
-Extreme example: when the data of a future never becomes ready, the polling loop is infinite.
+Extreme example: when the data of a future never becomes ready, the polling loop
+is infinite.
 
 ### Doesn't scale
 
 As all futures have to be "polled" one after another, when a Future becomes ready,
 its data may not be polled promptly.
 
-Extreme example: when there are 1000 futures and only the last one is ready, a program has to poll 999 times
-before the last one can be accessed.
+Extreme example: when there are 1000 futures and only the last one is ready, a
+program has to poll 999 times before the last one can be accessed.
