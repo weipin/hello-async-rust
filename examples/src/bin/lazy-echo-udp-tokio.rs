@@ -1,6 +1,6 @@
 //! An UDP echo service which sends received data back to where it comes from.
 //! The service waits one second before any sending, hence lazy.
-
+//!
 //! Implemented with the async runtime "tokio".
 //!
 //! Run

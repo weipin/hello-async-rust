@@ -31,7 +31,7 @@ userspace {
     vertical-gap: 100
 
     style: {
-        stroke-dash: 6
+        stroke-dash: 5
         font-size: 40
         italic: true
     }
@@ -41,7 +41,7 @@ kernal {
     vertical-gap: 100
 
     style: {
-        stroke-dash: 6
+        stroke-dash: 5
         font-size: 40
         italic: true
     }

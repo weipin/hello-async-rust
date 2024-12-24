@@ -76,23 +76,29 @@ same behavior but with different async runtimes.
    cargo run --bin loop-poll-many-hello-udp
    ```
 
-Note: "loop-poll-hello-udp" and "loop-poll-many-hello-udp" should both finish
-in about 1 second.
+---
+
+**NOTE**
+
+"loop-poll-hello-udp" and "loop-poll-many-hello-udp" should *both finish in
+about 1 second*.
+
+---
 
 ## Problems
 
 ### Wastes CPU time
 
-As a future has to be polled repeatedly and aggressively in a loop, CPU time is
+As a Future has to be polled repeatedly and aggressively in a loop, CPU time is
 wasted when data isn't ready.
 
-Extreme example: when the data of a future never becomes ready, the polling loop
+Extreme example: when the data of a Future never becomes ready, the polling loop
 is infinite.
 
 ### Doesn't scale
 
-As all futures have to be "polled" one after another, when a Future becomes ready,
+As all Futures have to be "polled" one after another, when a Future becomes ready,
 its data may not be polled promptly.
 
-Extreme example: when there are 1000 futures and only the last one is ready, a
+Extreme example: when there are 1000 Futures and only the last one is ready, a
 program has to poll 999 times before the last one can be accessed.

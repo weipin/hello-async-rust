@@ -5,5 +5,6 @@ edition = "2021"
 
 [dependencies]
 async-io = "2.4.0"
+polling = "3.7.4"
 smol-macros = "0.1.1"
 tokio = { version = "1.41.1", features = ["full", "tracing"] }
