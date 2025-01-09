@@ -16,8 +16,7 @@
     - [Lifecycle](basic/waker/lifecycle.md)
     - [std::task::Waker](basic/waker/rust.md)
     - [Examples](basic/waker/examples.md)
-- [Scheduler]()
-- [Runtime]()
+- [Runtime](basic/runtime/readme.md)
 - [Composing]()
 - [async and await]()
 

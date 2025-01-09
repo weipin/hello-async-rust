@@ -1,4 +1,4 @@
-# Waking, pushing futures in a polling queue
+# Waking, pushing futures to a polling queue
 
 ## Question
 How can a waker have its future "polled"?
@@ -6,11 +6,11 @@ How can a waker have its future "polled"?
 ## Answer
 A waker calls specific "waking" code when the waker is notified that its data
 is ready. The "waking" code locates the future that the waker associates to,
-and push the future to a "polling queue".
+and pushes the future to a "polling queue". A waker's job is finished after
+"waking".
 
-A waker's job is finished after "waking". With a "polling queue", wakers are
-decoupled from "external code" which pops futures from the queue, polls the
-futures and handles data.
+With a "polling queue", wakers are decoupled from "external code" which pops
+futures from the queue, polls the futures and dispatches data.
 
 Diagram: a waker wakes.
 ```d2

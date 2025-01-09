@@ -26,10 +26,10 @@ RawWakers function like [Trait Objects][6]. The [RawWakerVTable][7] provides a
 common behavior, and the `*const ()` pointer stores arbitrary data that the
 common behavior applies on.
 
-Benefits of the "vtable strategy":
-1. Breaking away from the requirements that [dyn compatibility][8] (formerly
+While inconvenient, this "vtable strategy" has its benefits:
+1. Breaks away from the requirements that [dyn compatibility][8] (formerly
    "object safety") enforces.
-1. [Reducing allocations][9].
+1. Enables [reducing allocations][9].
 
 
 [1]: https://doc.rust-lang.org/std/task/struct.Waker.html

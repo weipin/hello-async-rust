@@ -1,10 +1,10 @@
 # Reactor, handling I/O event notifications
 
 ## Question
-How can a waker **effectively** knows when its data is ready?
+How can a waker **efficiently** knows when its data is ready?
 
 ## Answer
-"Effectively" means no loop. In other words, a waker should be *notified* when
+"efficiently" means no loop. In other words, a waker should be *notified* when
 its data is ready. Such effectiveness is often achieved by using the
 notification mechanisms provided by the operating systems.
 
