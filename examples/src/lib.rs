@@ -1,9 +1,17 @@
 //! Code examples for "Hello async Rust"
 
-use std::future::Future;
-use std::io;
-use std::net::{IpAddr, Ipv4Addr, SocketAddr, UdpSocket};
-use std::task::{Poll, Waker};
+use std::net::{IpAddr, Ipv4Addr, SocketAddr};
+use std::task::Waker;
+
+mod block_on;
+mod recv;
+mod recv_with_waker;
+mod waker_fn;
+
+pub use block_on::block_on;
+pub use recv::Recv;
+pub use recv_with_waker::RecvWithWaker;
+pub use waker_fn::waker_fn;
 
 pub const TASKS_TOTAL_NUM: usize = 1_000;
 
@@ -17,41 +25,6 @@ pub const HELLO_BIND_SOCKET_ADDR: SocketAddr = SocketAddr::new(HELLO_BIND_IP_ADD
 
 // Data that the "Hello UDP" examples send.
 pub const HELLO: &[u8; 5] = b"hello";
-
-// ANCHOR: RecvOnce
-
-/// Future which receives one response from a given service.
-pub struct RecvOnce {
-    socket: UdpSocket,
-}
-
-impl RecvOnce {
-    /// Creates a new RecvOnce.
-    ///
-    /// # Safety
-    ///
-    /// Caller must ensure that `socket` has been moved into nonblocking mode.
-    pub unsafe fn new(socket: UdpSocket) -> Self {
-        Self { socket }
-    }
-}
-
-impl Future for RecvOnce {
-    type Output = Vec<u8>;
-
-    fn poll(
-        self: std::pin::Pin<&mut Self>,
-        _cx: &mut std::task::Context<'_>,
-    ) -> Poll<Self::Output> {
-        let mut buf = [0; 1024];
-        match self.socket.recv(&mut buf) {
-            Ok(n) => Poll::Ready(buf[..n].to_vec()),
-            Err(ref e) if e.kind() == io::ErrorKind::WouldBlock => std::task::Poll::Pending,
-            Err(e) => panic!("IO error: {e}"),
-        }
-    }
-}
-// ANCHOR_END: RecvOnce
 
 /// Returns a Waker that does nothing when used.
 const fn noop_waker() -> Waker {

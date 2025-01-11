@@ -1,12 +1,12 @@
 # Examples
 
-### Example: "reactor-hello-udp"
+### Example: "reactor-hello"
 
-Source: [reactor-hello-udp.rs](https://github.com/weipin/hello-async-rust/blob/main/examples/src/bin/reactor-hello-udp.rs)
+Source: [examples/src/bin/reactor-hello.rs](https://github.com/weipin/hello-async-rust/blob/main/examples/src/bin/reactor-hello.rs)
 
-### Example: "waker-many-hello-udp"
+### Example: "waker-many-hello"
 
-Source: [waker-many-hello-udp.rs](https://github.com/weipin/hello-async-rust/blob/main/examples/src/bin/waker-many-hello-udp.rs)
+Source: [examples/src/bin/waker-many-hello.rs](https://github.com/weipin/hello-async-rust/blob/main/examples/src/bin/waker-many-hello.rs)
 
 ### Run the examples
 
@@ -23,22 +23,19 @@ Source: [waker-many-hello-udp.rs](https://github.com/weipin/hello-async-rust/blo
      ```
    * Keep the service running
 
-1. Run "reactor-hello-udp". In the "examples" directory, execute:
+1. Run "reactor-hello". In the "examples" directory, execute:
    ```
-   cargo run --bin reactor-hello-udp
+   cargo run --bin reactor-hello
    ```
-1. Run "waker-many-hello-udp". In the "examples" directory, execute:
+1. Run "waker-many-hello". In the "examples" directory, execute:
    ```
-   cargo run --bin waker-many-hello-udp
+   cargo run --bin waker-many-hello
    ```
 
 ---
 
 **NOTE**
 
-"reactor-hello-udp" and "waker-many-hello-udp" should *both finish in about 1
-second*.
+"reactor-hello" and "waker-many-hello" should *both finish in about 1 second*.
 
 ---
-
-

@@ -12,7 +12,7 @@
 //! code polls a future directly and processes the data immediately.
 //!
 //! Run
-//! `cargo run --bin waker-many-hello-udp`
+//! `cargo run --bin waker-many-hello`
 
 use std::collections::HashMap;
 use std::future::Future;
@@ -44,7 +44,7 @@ struct MyFuture {
 }
 
 impl MyFuture {
-    /// Creates a new RecvOnce.
+    /// Creates a new MyFuture.
     ///
     /// # Safety
     ///
@@ -93,11 +93,11 @@ const VTABLE: RawWakerVTable = RawWakerVTable::new(
 fn wake(future_id: FutureID) {
     assert!(future_id < TASKS_TOTAL_NUM);
     let mut futures = FUTURES.lock().unwrap();
-    let recv_once = futures.get_mut(&future_id).unwrap();
+    let recv = futures.get_mut(&future_id).unwrap();
     let waker = new_waker(future_id);
     let mut cx = std::task::Context::from_waker(&waker);
 
-    match recv_once.as_mut().poll(&mut cx) {
+    match recv.as_mut().poll(&mut cx) {
         Poll::Ready(output) => {
             assert_eq!(output, future_id);
             if future_id % MATCH_PROGRESS_SIZE == 0 {
@@ -136,18 +136,18 @@ fn main() {
             socket
                 .send(&i.to_be_bytes())
                 .expect("couldn't send message");
-            let recv_once = Box::new(unsafe { MyFuture::new(socket) });
-            let recv_once = Pin::new(recv_once);
-            futures.insert(i, recv_once);
+            let recv = Box::new(unsafe { MyFuture::new(socket) });
+            let recv = Pin::new(recv);
+            futures.insert(i, recv);
         }
 
         // The first poll to all futures.
-        for (&future_id, recv_once) in futures.iter_mut() {
+        for (&future_id, recv) in futures.iter_mut() {
             let waker = new_waker(future_id);
             let mut cx = std::task::Context::from_waker(&waker);
 
             // Registers the waker.
-            match recv_once.as_mut().poll(&mut cx) {
+            match recv.as_mut().poll(&mut cx) {
                 Poll::Ready(_) => {
                     panic!("Invalid state");
                 }

@@ -2,7 +2,7 @@
 //! response.
 //!
 //! Run
-//! `cargo run --bin loop-poll-many-hello-udp`
+//! `cargo run --bin loop-poll-many-hello`
 
 use std::future::Future;
 use std::net::UdpSocket;
@@ -11,7 +11,7 @@ use std::task::Poll;
 use std::time::Instant;
 
 use hello_async::{
-    RecvOnce, ECHO_SOCKET_ADDR, HELLO, HELLO_BIND_SOCKET_ADDR, NOOP_WAKER, TASKS_TOTAL_NUM,
+    Recv, ECHO_SOCKET_ADDR, HELLO, HELLO_BIND_SOCKET_ADDR, NOOP_WAKER, TASKS_TOTAL_NUM,
 };
 
 fn main() {
@@ -27,14 +27,14 @@ fn main() {
     for _ in 0..TASKS_TOTAL_NUM {
         let socket = socket.try_clone().expect("couldn't clone the socket");
         socket.send(HELLO).expect("couldn't send message");
-        let recv_once = Box::new(unsafe { RecvOnce::new(socket) });
-        let recv_once = Pin::new(recv_once);
-        futures.push(recv_once);
+        let recv = Box::new(unsafe { Recv::new(socket) });
+        let recv = Pin::new(recv);
+        futures.push(recv);
     }
 
     let start = Instant::now();
     loop {
-        futures.retain_mut(|recv_once| match recv_once.as_mut().poll(&mut cx) {
+        futures.retain_mut(|recv| match recv.as_mut().poll(&mut cx) {
             Poll::Ready(output) => {
                 assert_eq!(output, HELLO, "hello does not match");
                 false

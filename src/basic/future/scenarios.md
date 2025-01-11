@@ -1,14 +1,13 @@
 # Scenarios
 
-Futures, while they can represent any type of values, are often used in specific
-scenarios.
+Futures, while they can represent any type of values, are often used in
+specific scenarios.
 
 One of the scenarios is I/O operation, such as reading from the Internet, or
 writing to a local file system, etc.
 
-Diagram: A function `foo` which obtains data through the BSD socket interface
-`read` in nonblocking mode.
-
+Diagram: Function `foo` obtains data through the BSD socket interface `read` in
+nonblocking mode.
 ```d2
 grid-rows: 1
 horizontal-gap: 140

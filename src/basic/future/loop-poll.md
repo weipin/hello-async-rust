@@ -7,50 +7,50 @@ To obtain the value of a Future, one obvious approach is to call the method
 
 ### "UDP Hello" examples
 
-The "UDP Hello" examples, which run on UDP protocol, send data `b"hello"`(repeatedly)
-to a given echo service and receive the response(s).
+The "UDP Hello" examples, which run on UDP protocol, send data
+`b"hello"`(repeatedly) to a given echo service and receive the response(s).
 
-The examples include "loop-poll-hello-udp" and "loop-poll-many-hello-udp".
+The examples include "loop-poll-hello" and "loop-poll-many-hello".
 
-### `RecvOnce`
+### `Recv`
 
-`RecvOnce`, as a major part of the "UDP Hello" examples, is a Future which
-receives one response from a given service. Its `poll` implementation reads data
-from a given UDP socket. `RecvOnce` requires and assumes that the UDP socket is
-in nonblocking mode.
+`Recv`, as a major part of the "UDP Hello" examples, is a Future which receives
+one response from a given service. Its `poll` implementation reads data from a
+given UDP socket. `Recv` requires and assumes that the UDP socket is in
+nonblocking mode.
 
-Source: [lib.rs](https://github.com/weipin/hello-async-rust/blob/main/examples/src/lib.rs)
+Source: [examples/src/recv.rs](https://github.com/weipin/hello-async-rust/blob/main/examples/src/recv.rs)
 
 ```rust
-{{#include ../../../examples/src/lib.rs:RecvOnce}}
+{{#include ../../../examples/src/recv.rs:Recv}}
 ```
 
-### Example: "loop-poll-hello-udp"
+### Example: "loop-poll-hello"
 
-"loop-poll-hello-udp" sends `b"hello"` to a given echo service, creates a
-`RecvOnce`, and calls `poll` of the `RecvOnce` until `Poll::Ready(Vec<u8>)` is
-returned.
+"loop-poll-hello" sends `b"hello"` to a given echo service, creates a `Recv`,
+and calls `poll` of the `Recv` until `Poll::Ready(Vec<u8>)` is returned.
 
-Source: [loop-poll-hello-udp.rs](https://github.com/weipin/hello-async-rust/blob/main/examples/src/bin/loop-poll-hello-udp.rs)
+Source: [examples/src/bin/loop-poll-hello.rs](https://github.com/weipin/hello-async-rust/blob/main/examples/src/bin/loop-poll-hello.rs)
 
-### Example: "loop-poll-many-hello-udp"
+### Example: "loop-poll-many-hello"
 
-"loop-poll-many-hello-udp" repeatedly sends `b"hello"` to a given echo service
-for 1000 times, creates a vector of 1000 `RecvOnce`s, and calls `poll` of each
-`RecvOnce` until all returns `Poll::Ready(Vec<u8>)`.
+"loop-poll-many-hello" repeatedly sends `b"hello"` to a given echo service for
+1000 times, creates a vector of 1000 `Recv`s, and calls `poll` of each `Recv`
+until all returns `Poll::Ready(Vec<u8>)`.
 
-Source: [loop-poll-many-hello-udp.rs](https://github.com/weipin/hello-async-rust/blob/main/examples/src/bin/loop-poll-many-hello-udp.rs)
+Source: [examples/src/bin/loop-poll-many-hello.rs](https://github.com/weipin/hello-async-rust/blob/main/examples/src/bin/loop-poll-many-hello.rs)
 
 ### The echo service: "Lazy Echo"
 
 "Lazy Echo" is an UDP echo service: the service sends received data back to
-where it comes from. The service waits one second before any sending, hence lazy.
+where it comes from. The service waits one second before any sending, hence
+lazy.
 
-"Lazy Echo" has two implementations: "lazy-echo-udp-smol" and "lazy-echo-udp-tokio" --
-same behavior but with different async runtimes.
+"Lazy Echo" has two implementations: "lazy-echo-udp-smol" and
+"lazy-echo-udp-tokio" -- same behavior but with different async runtimes.
 
-- "lazy-echo-udp-smol" source: [lazy-echo-udp-smol.rs](https://github.com/weipin/hello-async-rust/blob/main/examples/src/bin/lazy-echo-udp-smol.rs)
-- "lazy-echo-udp-tokio" source: [lazy-echo-udp-tokio.rs](https://github.com/weipin/hello-async-rust/blob/main/examples/src/bin/lazy-echo-udp-tokio.rs)
+- "lazy-echo-udp-smol" source: [examples/src/bin/lazy-echo-udp-smol.rs](https://github.com/weipin/hello-async-rust/blob/main/examples/src/bin/lazy-echo-udp-smol.rs)
+- "lazy-echo-udp-tokio" source: [examples/src/bin/lazy-echo-udp-tokio.rs](https://github.com/weipin/hello-async-rust/blob/main/examples/src/bin/lazy-echo-udp-tokio.rs)
 
 ### Run the examples
 
@@ -67,20 +67,20 @@ same behavior but with different async runtimes.
      ```
    * Keep the service running
 
-1. Run "loop-poll-hello-udp". In the "examples" directory, execute:
+1. Run "loop-poll-hello". In the "examples" directory, execute:
    ```
-   cargo run --bin loop-poll-hello-udp
+   cargo run --bin loop-poll-hello
    ```
-1. Run "loop-poll-many-hello-udp". In the "examples" directory, execute:
+1. Run "loop-poll-many-hello". In the "examples" directory, execute:
    ```
-   cargo run --bin loop-poll-many-hello-udp
+   cargo run --bin loop-poll-many-hello
    ```
 
 ---
 
 **NOTE**
 
-"loop-poll-hello-udp" and "loop-poll-many-hello-udp" should *both finish in
+"loop-poll-hello" and "loop-poll-many-hello" should *both finish in
 about 1 second*.
 
 ---

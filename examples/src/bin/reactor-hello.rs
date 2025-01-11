@@ -7,7 +7,7 @@
 //! This example doesn't rely on wakers -- a dummy "noop_waker" is used.
 //!
 //! Run
-//! `cargo run --bin reactor-hello-udp`
+//! `cargo run --bin reactor-hello`
 
 use std::future::Future;
 use std::net::UdpSocket;
@@ -16,7 +16,7 @@ use std::task::Poll;
 use std::thread;
 use std::time::Instant;
 
-use hello_async::{RecvOnce, ECHO_SOCKET_ADDR, HELLO, HELLO_BIND_SOCKET_ADDR, NOOP_WAKER};
+use hello_async::{Recv, ECHO_SOCKET_ADDR, HELLO, HELLO_BIND_SOCKET_ADDR, NOOP_WAKER};
 use polling::{Event, Events, Poller};
 
 fn main() {
@@ -29,13 +29,13 @@ fn main() {
 
     socket.send(HELLO).expect("couldn't send message");
 
-    let mut recv_once = unsafe { RecvOnce::new(socket.try_clone().unwrap()) };
-    let mut recv_once = Pin::new(&mut recv_once);
+    let mut recv = unsafe { Recv::new(socket.try_clone().unwrap()) };
+    let mut recv = Pin::new(&mut recv);
 
     let start = Instant::now();
     let mut cx = std::task::Context::from_waker(&NOOP_WAKER);
     // The first poll
-    match recv_once.as_mut().poll(&mut cx) {
+    match recv.as_mut().poll(&mut cx) {
         Poll::Ready(_) => {
             panic!("Invalid future state");
         }
@@ -63,7 +63,7 @@ fn main() {
 
     // The second poll. At this point, the main thread has been unparked, and
     // the socket is ready to read.
-    match recv_once.as_mut().poll(&mut cx) {
+    match recv.as_mut().poll(&mut cx) {
         Poll::Ready(output) => {
             println!(
                 "recv: {} ({:?})",

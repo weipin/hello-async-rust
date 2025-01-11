@@ -1,8 +1,9 @@
 # std::future::Future
 
 Rust futures are [`std::future::Future`][1]s. Types which implement the trait
-expose the represented values through the method [`poll`][2]. The method returns
-a Enum [`Poll`][3]: `Ready(T)` when the value is ready, or `Pending` if not.
+expose the represented values through the method [`poll`][2]. The method
+returns a Enum [`Poll`][3]: `Ready(T)` when the value is ready, or `Pending` if
+not.
 
 `Poll` definition:
 ```rust

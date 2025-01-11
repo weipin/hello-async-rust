@@ -16,14 +16,22 @@
     - [Lifecycle](basic/waker/lifecycle.md)
     - [std::task::Waker](basic/waker/rust.md)
     - [Examples](basic/waker/examples.md)
+- [std::pin::Pin](basic/pin/readme.md)
 - [Runtime](basic/runtime/readme.md)
-- [Composing]()
-- [async and await]()
+- [Exercises](basic/exercises/readme.md)
 
 # Advanced
 
-- [Pin]()
+- [Composing Futures](advanced/composing/readme.md)
+    - [Examples]()
+        - [Continue](advanced/composing/continue.md)
+        - [Join](advanced/composing/join.md)
+        - [Select](advanced/composing/select.md)
+    - [Future Tree](advanced/composing/tree.md)
+- [async and await]()
 - [Task]()
+- [Mutex]()
+- [Stream]()
 
 # Misc
 
