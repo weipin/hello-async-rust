@@ -35,6 +35,7 @@ jobs:
       run: cargo check --manifest-path ${EXAMPLES_MANIFEST_PATH}
 
   build_book:
+    needs: check_examples
     runs-on: ubuntu-latest
     env:
       MDBOOK_VERSION: 0.4.43
