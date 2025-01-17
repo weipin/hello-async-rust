@@ -6,13 +6,13 @@ use std::thread::{self, Thread};
 use crate::waker_fn;
 
 /// Creates a Waker which, when waking, unparks a given thread.
-fn waker_unparks(thread: Thread) -> Waker {
+fn waker_unpark(thread: Thread) -> Waker {
     waker_fn(move || thread.unpark())
 }
 
 /// Blocks the current thread on a future.
 pub fn block_on<T>(future: impl Future<Output = T>) -> T {
-    let waker = waker_unparks(thread::current());
+    let waker = waker_unpark(thread::current());
     let cx = &mut Context::from_waker(&waker);
     let mut future = pin!(future);
     loop {

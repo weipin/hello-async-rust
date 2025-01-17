@@ -1,7 +1,7 @@
 # Exercises
 
 1. Write function `waker_fn` which "converts a closure into a Waker".
-1. Write function `waker_unparks` which creates a waker. The waker unparks a
+1. Write function `waker_unpark` which creates a waker. The waker unparks a
    given thread when waking.
 1. Write function `block_on` which "blocks the current thread on a future".
 1. Rewrite `Recv` to support the Waker pattern. Name the new struct
@@ -20,5 +20,4 @@
 [2]: https://github.com/weipin/hello-async-rust/blob/main/examples/src/block_on.rs
 [3]: https://github.com/weipin/hello-async-rust/blob/main/examples/src/recv_with_waker.rs
 [4]: https://github.com/weipin/hello-async-rust/blob/main/examples/src/bin/block-on-hello.rs
-
 

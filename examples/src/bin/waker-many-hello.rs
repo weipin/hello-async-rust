@@ -136,8 +136,7 @@ fn main() {
             socket
                 .send(&i.to_be_bytes())
                 .expect("couldn't send message");
-            let recv = Box::new(unsafe { MyFuture::new(socket) });
-            let recv = Pin::new(recv);
+            let recv = Box::pin(unsafe { MyFuture::new(socket) });
             futures.insert(i, recv);
         }
 

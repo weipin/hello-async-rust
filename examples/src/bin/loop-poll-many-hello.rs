@@ -6,7 +6,6 @@
 
 use std::future::Future;
 use std::net::UdpSocket;
-use std::pin::Pin;
 use std::task::Poll;
 use std::time::Instant;
 
@@ -27,8 +26,7 @@ fn main() {
     for _ in 0..TASKS_TOTAL_NUM {
         let socket = socket.try_clone().expect("couldn't clone the socket");
         socket.send(HELLO).expect("couldn't send message");
-        let recv = Box::new(unsafe { Recv::new(socket) });
-        let recv = Pin::new(recv);
+        let recv = Box::pin(unsafe { Recv::new(socket) });
         futures.push(recv);
     }
 
