@@ -6,19 +6,26 @@
 //! Run:
 //! `cargo run --bin lazy-echo-udp-smol`
 //!
+//! OR
+//! `cargo run --bin lazy-echo-udp-smol -- 127.0.0.1:1234`
+//!
 //! Test:
 //! `nc 127.0.0.1 1234 -u`
 
 use async_io::{Async, Timer};
 use hello_async::ECHO_SOCKET_ADDR;
 use smol_macros::{main, Executor};
+use std::env;
 use std::net::UdpSocket;
 use std::sync::Arc;
 use std::time::Duration;
 
 main! {
 async fn main(ex: &Executor<'_>) {
-    let socket = Async::<UdpSocket>::bind(ECHO_SOCKET_ADDR).unwrap();
+    let args: Vec<_> = env::args().collect();
+    let addr = args.get(1).map_or(ECHO_SOCKET_ADDR, |v| v.parse().unwrap());
+
+    let socket = Async::<UdpSocket>::bind(addr).unwrap();
     let socket = Arc::new(socket);
 
     let mut buf = [0; 1024];

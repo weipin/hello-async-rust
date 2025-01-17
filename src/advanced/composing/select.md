@@ -31,3 +31,7 @@ d.continue -> poll.pending: NO
 d.continue -> poll.ready: YES
 ```
 
+## Code
+See [examples/src/bin/select-hello.rs][1]
+
+[1]: https://github.com/weipin/hello-async-rust/blob/main/examples/src/bin/select-hello.rs

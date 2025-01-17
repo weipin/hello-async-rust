@@ -24,3 +24,7 @@ a.continue -> poll.pending: NO
 a.process -> poll.ready
 ```
 
+## Code
+See [examples/src/bin/continue-hello.rs][1]
+
+[1]: https://github.com/weipin/hello-async-rust/blob/main/examples/src/bin/continue-hello.rs

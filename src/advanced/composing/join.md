@@ -25,3 +25,16 @@ b.continue -> b.d: poll(..) {
 b.continue -> poll.pending: NO
 b.continue -> poll.ready: YES
 ```
+
+## Code
+See [examples/src/bin/join-hello.rs][1]
+
+[1]: https://github.com/weipin/hello-async-rust/blob/main/examples/src/bin/join-hello.rs
+
+---
+
+**NOTE**
+
+C and D shares the same Waker.
+
+---

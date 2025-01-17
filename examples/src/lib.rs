@@ -18,10 +18,14 @@ pub const TASKS_TOTAL_NUM: usize = 1_000;
 // Default address of the echo service.
 const ECHO_IP_ADDR: IpAddr = IpAddr::V4(Ipv4Addr::new(127, 0, 0, 1));
 pub const ECHO_SOCKET_ADDR: SocketAddr = SocketAddr::new(ECHO_IP_ADDR, 1234);
+pub const ECHO_SOCKET_ADDR2: SocketAddr = SocketAddr::new(ECHO_IP_ADDR, 1235);
+pub const ECHO_SOCKET_ADDR3: SocketAddr = SocketAddr::new(ECHO_IP_ADDR, 1236);
 
 // Default address of the "Hello UDP" examples.
 const HELLO_BIND_IP_ADDR: IpAddr = IpAddr::V4(Ipv4Addr::new(127, 0, 0, 1));
 pub const HELLO_BIND_SOCKET_ADDR: SocketAddr = SocketAddr::new(HELLO_BIND_IP_ADDR, 12345);
+pub const HELLO_BIND_SOCKET_ADDR2: SocketAddr = SocketAddr::new(HELLO_BIND_IP_ADDR, 12346);
+pub const HELLO_BIND_SOCKET_ADDR3: SocketAddr = SocketAddr::new(HELLO_BIND_IP_ADDR, 12347);
 
 // Data that the "Hello UDP" examples send.
 pub const HELLO: &[u8; 5] = b"hello";

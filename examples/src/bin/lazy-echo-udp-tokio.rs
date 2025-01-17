@@ -5,11 +5,14 @@
 //!
 //! Run
 //! `cargo run --bin lazy-echo-udp-tokio`
+//! OR
+//! `cargo run --bin lazy-echo-udp-tokio -- 127.0.0.1:1234`
 //!
 //! Test
 //! `nc 127.0.0.1 1234 -u`
 
 use hello_async::ECHO_SOCKET_ADDR;
+use std::env;
 use std::error::Error;
 use std::sync::Arc;
 use std::time::Duration;
@@ -18,7 +21,10 @@ use tokio::time::sleep;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error>> {
-    let socket = UdpSocket::bind(&ECHO_SOCKET_ADDR).await?;
+    let args: Vec<_> = env::args().collect();
+    let addr = args.get(1).map_or(ECHO_SOCKET_ADDR, |v| v.parse().unwrap());
+
+    let socket = UdpSocket::bind(addr).await?;
     let socket = Arc::new(socket);
 
     let mut buf = [0; 1024];
