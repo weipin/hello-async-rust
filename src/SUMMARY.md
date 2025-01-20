@@ -28,11 +28,15 @@
         - [Join](advanced/composing/join.md)
         - [Select](advanced/composing/select.md)
     - [Future Tree](advanced/composing/tree.md)
-- [async and await]()
+- [async and await](advanced/async_await/readme.md)
+    - [Size](advanced/async_await/size.md)
+    - [Exercises](advanced/async_await/exercises.md)
 - [Task]()
 - [Mutex]()
 - [Stream]()
 
 # Misc
 
+- [Further reading]()
+- [Projects]()
 - [Rewards: a meme](misc/meme-before-after.md)

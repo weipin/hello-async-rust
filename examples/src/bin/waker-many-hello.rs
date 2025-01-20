@@ -44,7 +44,7 @@ struct MyFuture {
 }
 
 impl MyFuture {
-    /// Creates a new MyFuture.
+    /// Creates a new `MyFuture`.
     ///
     /// # Safety
     ///
@@ -111,7 +111,7 @@ fn wake(future_id: FutureID) {
     }
 }
 
-/// Creates a new RawWaker.
+/// Creates a new `RawWaker`.
 fn new_raw_waker(future_id: FutureID) -> RawWaker {
     RawWaker::new(future_id as *const (), &VTABLE)
 }

@@ -4,7 +4,7 @@
 //! 1. Usage of "reactor".
 //! 1. How to block the current thread until data is obtained.
 //!
-//! This example doesn't rely on wakers -- a dummy "noop_waker" is used.
+//! This example doesn't rely on wakers -- a dummy `NOOP_WAKER` is used.
 //!
 //! Run
 //! `cargo run --bin reactor-hello`

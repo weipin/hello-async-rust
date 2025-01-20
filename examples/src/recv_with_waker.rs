@@ -10,11 +10,12 @@ pub struct RecvWithWaker {
 }
 
 impl RecvWithWaker {
-    /// Creates a new RecvWithWaker.
+    /// Creates a new `RecvWithWaker`.
     ///
     /// # Safety
     ///
     /// Caller must ensure that `socket` has been moved into nonblocking mode.
+    #[must_use]
     pub unsafe fn new(socket: UdpSocket) -> Self {
         Self { socket }
     }
