@@ -28,10 +28,11 @@
         - [Join](advanced/composing/join.md)
         - [Select](advanced/composing/select.md)
     - [Future Tree](advanced/composing/tree.md)
+    - [Procedural](advanced/composing/procedural.md)
 - [async and await](advanced/async_await/readme.md)
     - [Size](advanced/async_await/size.md)
     - [Exercises](advanced/async_await/exercises.md)
-- [Task]()
+- [Task](advanced/task/readme.md)
 - [Mutex]()
 - [Stream]()
 
