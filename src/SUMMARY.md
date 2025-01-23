@@ -33,11 +33,10 @@
     - [Size](advanced/async_await/size.md)
     - [Exercises](advanced/async_await/exercises.md)
 - [Task](advanced/task/readme.md)
-- [Mutex]()
-- [Stream]()
+- [Exercises](advanced/exercises/readme.md)
 
 # Misc
 
-- [Further reading]()
-- [Projects]()
+- [Further reading](misc/further-reading.md)
+- [Projects](misc/projects.md)
 - [Rewards: a meme](misc/meme-before-after.md)

@@ -1,5 +1,7 @@
 # Hello Async Rust
 
-Unofficial async Rust tutorial [WIP].
+Unofficial async Rust tutorial. [>> Read online][1]
 
-[Read online](https://weipin.github.io/hello-async-rust)
+Any PR is welcome and it will be merged immediately.
+
+[1]: https://weipin.github.io/hello-async-rust
